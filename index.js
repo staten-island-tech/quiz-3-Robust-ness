@@ -14,11 +14,12 @@ for(i = 0; !x; i++) {
     }
 }
  
-let tipAmount = Number(prompt("Tip Amount in Percent (for 20% do write 20)")) / 100
 
+let tipAmount = []
 
-for (i = 0; i < payInit.length; i++) {
-  payTip[i] = payInit[i] * tipAmount
+for (let i in payInit) {
+  tipAmount[i] = payInit[i] < 50 ? .2 : payInit[i] >= 50 && payInit[i] <= 200 ? .15 : .1
+  payTip[i] = payInit[i] * tipAmount[i]
   payFinal[i] = payInit[i] + payTip[i]
 }
 
@@ -27,7 +28,7 @@ const payOver100 = payFinal.filter(pay => pay > 100)
 
 
 alert(`Initial pay: ${payInit}
-Tip Percentage: ${tipAmount * 100}%
+Tip Percentage: ${tipAmount}%
 Final Pay: ${payFinal}
 Tipping Amounts: ${payTip}
 Pay Over 100: ${payOver100}`)
